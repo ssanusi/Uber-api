@@ -21,6 +21,9 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "bcrypt": "^3.0.6",
+    "class-validator": "^0.11.0",
     "cors": "^2.8.5",
     "graphql-tools": "^4.0.6",
     "graphql-yoga": "^1.18.3",
