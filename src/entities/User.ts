@@ -1,8 +1,6 @@
 import bcrypt from "bcrypt";
 import { IsEmail, Length } from "class-validator";
 
-
-
 import {
   BaseEntity,
   BeforeInsert,
