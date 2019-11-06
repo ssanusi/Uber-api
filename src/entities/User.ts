@@ -8,11 +8,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+import Chat from "./Chat";
+import Message from "./Message";
+import Verification from "./Verification";
 
-const BCRYPT_ROUNDS = 10
+const BCRYPT_ROUNDS = 10;
 
 @Entity()
 class User extends BaseEntity {
@@ -66,6 +71,15 @@ class User extends BaseEntity {
   @Column({ type: "double precision", default: 0 })
   lastOrientation: number;
 
+  @OneToMany(type => Verification, verification => verification.user)
+  verification: Verification[];
+
+  @ManyToOne(type => Chat, chat => chat.participants)
+  chat: Chat;
+
+  @OneToMany(type => Message, message => message.user)
+  messages: Message[]
+  
   @CreateDateColumn() createdAt: string;
   @UpdateDateColumn() updatedAt: string;
 
@@ -73,23 +87,21 @@ class User extends BaseEntity {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public comparePassword(password: string): Promise<boolean>{
-      return bcrypt.compare(password, this.password);
+  public comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
   }
 
-  private hashPassword(password: string): Promise<string>{
-      return bcrypt.hash(password, BCRYPT_ROUNDS)
+  private hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, BCRYPT_ROUNDS);
   }
 
   @BeforeInsert()
   @BeforeUpdate()
   async savePassword(): Promise<void> {
-      if(this.password){
-          this.password =  await this.hashPassword(this.password);
-      }
+    if (this.password) {
+      this.password = await this.hashPassword(this.password);
+    }
   }
-
-
 }
 
 export default User;
