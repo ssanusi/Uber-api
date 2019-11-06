@@ -29,6 +29,5 @@
         "webpack",
         "jest",
         "src/superTest.ts"
-
     ]
 }
