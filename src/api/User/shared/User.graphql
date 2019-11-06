@@ -18,6 +18,8 @@ type User {
     lastOrientation: Float
     chat: Chat
     messages: [Message]
+    rideAsPassanger: [Ride]
+    rideAsDriver: [Ride]
     createdAt: String!
     updatedAt: String
 }
