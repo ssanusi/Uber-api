@@ -15,8 +15,8 @@ import {
 } from "typeorm";
 import Chat from "./Chat";
 import Message from "./Message";
-import Verification from "./Verification";
 import Ride from "./Ride";
+import Verification from "./Verification";
 
 
 const BCRYPT_ROUNDS = 10;
@@ -43,10 +43,10 @@ class User extends BaseEntity {
   @Column({ type: "boolean" })
   verifiedEmail: boolean;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true})
   password: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   phoneNumber: string;
 
   @Column({ type: "boolean", default: false })
@@ -54,6 +54,9 @@ class User extends BaseEntity {
 
   @Column({ type: "text" })
   profilePhoto: string;
+
+  @Column({ type: "text", nullable: true})
+  fbId: string;
 
   @Column({ type: "boolean", default: false })
   isDriving: boolean;
