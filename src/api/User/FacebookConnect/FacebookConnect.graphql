@@ -1,0 +1,17 @@
+input FacebookUserInput {
+  firstName: String!
+  lastName: String!
+  email: String
+  fbId: String!
+}
+
+type FacebookResponse {
+  status: String!
+  error: String
+  token: String
+}
+
+type Mutation {
+  facebookConnect(input: FacebookUserInput!): FacebookResponse!
+}
+

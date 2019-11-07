@@ -6,8 +6,8 @@ type User {
     age: Int
     email: String
     verifiedEmail: Boolean!
-    password: String!
-    phoneNumber: String!
+    password: String
+    phoneNumber: String
     verifiedPhoneNumber: Boolean!
     profilePhoto: String!
     isDriving: Boolean!
@@ -17,6 +17,7 @@ type User {
     lastLog: Float
     lastOrientation: Float
     chat: Chat
+    fbId: String
     messages: [Message]
     rideAsPassanger: [Ride]
     rideAsDriver: [Ride]
@@ -25,5 +26,5 @@ type User {
 }
 
 type Query {
-    users: [User!]
+    user: User
 }

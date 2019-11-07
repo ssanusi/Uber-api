@@ -6,23 +6,26 @@ Uber Clone is an Application that allows Riders to Request for a ride.
 
 Before you begin, ensure you have met the following requirements:
 
-* You have installed the latest version of NodeJs and Yarn/npm Installed
-* You have a `<Windows/Linux/Mac>` machine. State which OS is supported/which is not.
-* You have read `<guide/link/documentation_related_to_project>`.
+- You have installed the latest version of NodeJs and Yarn/npm Installed
+- You have a `<Windows/Linux/Mac>` machine. State which OS is supported/which is not.
+- You have read `<guide/link/documentation_related_to_project>`.
 
 ## Installing <project_name>
 
 To install <project_name>, follow these steps:
 
 Linux and macOS:
+
 ```
 yarn install
 ```
 
 Windows:
+
 ```
 yarn install
 ```
+
 ## Using <project_name>
 
 To use <project_name>, follow these steps:
@@ -33,8 +36,55 @@ To use <project_name>, follow these steps:
 
 Add run commands and examples you think users will find useful. Provide an options reference for bonus points!
 
+## Features
+
+### Public Resolvers:
+
+- [x] Sign In / Sign Up with Facebook
+- [ ] Sign In with Email
+- [ ] Start Phone Number Verification
+- [ ] Complete Phone Number Verification
+- [ ] Sign Up with Email
+
+---
+
+### Authentication:
+
+- [ ] Generate JWT
+- [ ] Verifiy JWT
+
+---
+
+### Private Resolvers:
+
+- [ ] Get my Profile
+- [ ] Request Email Verification
+- [ ] Complete Email Verification
+- [ ] Update my Profile
+- [ ] Toggle Driving Mode
+- [ ] Report Location / Orientation
+- [ ] Add Place
+- [ ] Edit Place
+- [ ] Delete Place
+- [ ] Get My Places
+- [ ] See Nearby Drivers
+- [ ] Subscribe to Nearby Drivers
+- [ ] Request a Ride
+- [ ] Get Nearby Ride Requests
+- [ ] Subscribe to Nearby Ride Requests
+- [ ] Update Ride Status
+- [ ] Get Ride
+- [ ] Subscribe to Ride Status
+- [ ] Create a Chat Room
+- [ ] Get Chat Room Messages
+- [ ] Send a Chat Message
+- [ ] Subscribe to Chat Room Messages
+- [ ] Get Ride History -[ ] See Ride Detail
+
 ## Contributing to <project_name>
+
 <!--- If your README is long or you have some specific process or steps you want contributors to follow, consider creating a separate CONTRIBUTING.md file--->
+
 To contribute to <project_name>, follow these steps:
 
 1. Fork this repository.
@@ -49,7 +99,6 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 
 Thanks to the following people who have contributed to this project:
 
-
 You might want to consider using something like the [All Contributors](https://github.com/all-contributors/all-contributors) specification and its [emoji key](https://allcontributors.org/docs/en/emoji-key).
 
 ## Contact
@@ -57,6 +106,7 @@ You might want to consider using something like the [All Contributors](https://g
 If you want to contact me you can reach me at <your_email@address.com>.
 
 ## License
+
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-This project uses the following license: [<license_name>](<link>).
+This project uses the following license: [<license_name>](link).
