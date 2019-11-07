@@ -1,0 +1,14 @@
+input EmailSignInInput {
+   email: String!
+   password: String!
+}
+
+type EmailSignInResponse {
+  status: String!
+  error: String
+  token: String
+}
+
+type Mutation {
+   emailSignIn(input:EmailSignInInput): EmailSignInResponse!
+}

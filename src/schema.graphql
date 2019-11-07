@@ -43,6 +43,22 @@ type Ride {
   updatedAt: String
 }
 
+input EmailSignInInput {
+  email: String!
+  password: String!
+}
+
+type EmailSignInResponse {
+  status: String!
+  error: String
+  token: String
+}
+
+type Mutation {
+  emailSignIn(input: EmailSignInInput): EmailSignInResponse!
+  facebookConnect(input: FacebookUserInput!): FacebookResponse!
+}
+
 input FacebookUserInput {
   firstName: String!
   lastName: String!
@@ -56,10 +72,6 @@ type FacebookResponse {
   token: String
 }
 
-type Mutation {
-  facebookConnect(input: FacebookUserInput!): FacebookResponse!
-}
-
 type User {
   id: ID!
   firstName: String!
@@ -68,8 +80,8 @@ type User {
   age: Int
   email: String
   verifiedEmail: Boolean!
-  password: String!
-  phoneNumber: String!
+  password: String
+  phoneNumber: String
   verifiedPhoneNumber: Boolean!
   profilePhoto: String!
   isDriving: Boolean!

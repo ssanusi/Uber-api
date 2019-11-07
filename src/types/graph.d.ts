@@ -1,4 +1,4 @@
-export const typeDefs = ["type Chat {\n  id: ID!\n  messages: [Message]!\n  paticipants: [User]!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  user: User!\n  chat: Chat!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Place {\n  id: ID!\n  name: String!\n  log: Float!\n  lat: Float!\n  address: String!\n  isFav: Boolean!\n  createdAt: String!\n  updateAt: String\n}\n\ntype Ride {\n  id: ID!\n  status: String!\n  pickupAddress: String!\n  pickupLog: Float!\n  pickupLat: Float!\n  dropOffAddress: String!\n  dropOffLog: Float!\n  dropOffLat: Float!\n  price: Float!\n  duration: String!\n  driver: User!\n  passanger: User!\n  createdAt: String!\n  updatedAt: String\n}\n\ninput FacebookUserInput {\n  firstName: String!\n  lastName: String!\n  email: String\n  fbId: String!\n}\n\ntype FacebookResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ntype Mutation {\n  facebookConnect(input: FacebookUserInput!): FacebookResponse!\n}\n\ntype User {\n  id: ID!\n  firstName: String!\n  lastName: String!\n  fullName: String\n  age: Int\n  email: String\n  verifiedEmail: Boolean!\n  password: String!\n  phoneNumber: String!\n  verifiedPhoneNumber: Boolean!\n  profilePhoto: String!\n  isDriving: Boolean!\n  isTaken: Boolean!\n  isRiding: Boolean!\n  lastLat: Float\n  lastLog: Float\n  lastOrientation: Float\n  chat: Chat\n  fbId: String\n  messages: [Message]\n  rideAsPassanger: [Ride]\n  rideAsDriver: [Ride]\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Query {\n  user: User\n}\n\ntype Verification {\n  id: ID!\n  target: String!\n  payload: String!\n  key: String!\n  used: Boolean!\n  createdAt: String!\n  updatedAt: String\n}\n"];
+export const typeDefs = ["type Chat {\n  id: ID!\n  messages: [Message]!\n  paticipants: [User]!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  user: User!\n  chat: Chat!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Place {\n  id: ID!\n  name: String!\n  log: Float!\n  lat: Float!\n  address: String!\n  isFav: Boolean!\n  createdAt: String!\n  updateAt: String\n}\n\ntype Ride {\n  id: ID!\n  status: String!\n  pickupAddress: String!\n  pickupLog: Float!\n  pickupLat: Float!\n  dropOffAddress: String!\n  dropOffLog: Float!\n  dropOffLat: Float!\n  price: Float!\n  duration: String!\n  driver: User!\n  passanger: User!\n  createdAt: String!\n  updatedAt: String\n}\n\ninput EmailSignInInput {\n  email: String!\n  password: String!\n}\n\ntype EmailSignInResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ntype Mutation {\n  emailSignIn(input: EmailSignInInput): EmailSignInResponse!\n  facebookConnect(input: FacebookUserInput!): FacebookResponse!\n}\n\ninput FacebookUserInput {\n  firstName: String!\n  lastName: String!\n  email: String\n  fbId: String!\n}\n\ntype FacebookResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ntype User {\n  id: ID!\n  firstName: String!\n  lastName: String!\n  fullName: String\n  age: Int\n  email: String\n  verifiedEmail: Boolean!\n  password: String\n  phoneNumber: String\n  verifiedPhoneNumber: Boolean!\n  profilePhoto: String!\n  isDriving: Boolean!\n  isTaken: Boolean!\n  isRiding: Boolean!\n  lastLat: Float\n  lastLog: Float\n  lastOrientation: Float\n  chat: Chat\n  fbId: String\n  messages: [Message]\n  rideAsPassanger: [Ride]\n  rideAsDriver: [Ride]\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Query {\n  user: User\n}\n\ntype Verification {\n  id: ID!\n  target: String!\n  payload: String!\n  key: String!\n  used: Boolean!\n  createdAt: String!\n  updatedAt: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -13,8 +13,8 @@ export interface User {
   age: number | null;
   email: string | null;
   verifiedEmail: boolean;
-  password: string;
-  phoneNumber: string;
+  password: string | null;
+  phoneNumber: string | null;
   verifiedPhoneNumber: boolean;
   profilePhoto: string;
   isDriving: boolean;
@@ -67,11 +67,27 @@ export interface Ride {
 }
 
 export interface Mutation {
+  emailSignIn: EmailSignInResponse;
   facebookConnect: FacebookResponse;
+}
+
+export interface EmailSignInMutationArgs {
+  input: EmailSignInInput | null;
 }
 
 export interface FacebookConnectMutationArgs {
   input: FacebookUserInput;
+}
+
+export interface EmailSignInInput {
+  email: string;
+  password: string;
+}
+
+export interface EmailSignInResponse {
+  status: string;
+  error: string | null;
+  token: string | null;
 }
 
 export interface FacebookUserInput {
