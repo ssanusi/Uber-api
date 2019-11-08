@@ -3,7 +3,7 @@ const authResolver = (resolverFunction) => (parent, args, context, info) => {
      throw new Error("UnAuthorized")
     }
 
-    const resolved = resolverFunction;
+    const resolved = resolverFunction(parent, args, context, info);
     return resolved;
 }
 
