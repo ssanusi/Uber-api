@@ -1,0 +1,19 @@
+input EmailSignUpInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  profilePhoto: String!
+  age: Int!
+}
+
+
+type EmailSignUpResponse {
+    status: String!
+    error: String
+    token: String
+}
+
+type Mutation {
+    emailSignUp(input:EmailSignUpInput!): EmailSignUpResponse!
+}

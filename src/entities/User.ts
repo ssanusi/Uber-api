@@ -18,7 +18,6 @@ import Message from "./Message";
 import Ride from "./Ride";
 import Verification from "./Verification";
 
-
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
@@ -43,7 +42,7 @@ class User extends BaseEntity {
   @Column({ type: "boolean" })
   verifiedEmail: boolean;
 
-  @Column({ type: "text", nullable: true})
+  @Column({ type: "text", nullable: true })
   password: string;
 
   @Column({ type: "text", nullable: true })
@@ -55,7 +54,7 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   profilePhoto: string;
 
-  @Column({ type: "text", nullable: true})
+  @Column({ type: "text", nullable: true })
   fbId: string;
 
   @Column({ type: "boolean", default: false })
@@ -83,13 +82,13 @@ class User extends BaseEntity {
   chat: Chat;
 
   @OneToMany(type => Message, message => message.user)
-  messages: Message[]
+  messages: Message[];
 
   @OneToMany(type => Ride, ride => ride.passenger)
-  rideAsPassenger: Ride[]
+  rideAsPassenger: Ride[];
 
   @OneToMany(type => Ride, ride => ride.driver)
-  rideAsDriver: Ride[]
+  rideAsDriver: Ride[];
 
   @CreateDateColumn() createdAt: string;
   @UpdateDateColumn() updatedAt: string;

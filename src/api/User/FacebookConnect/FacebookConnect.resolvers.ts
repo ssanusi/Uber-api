@@ -11,7 +11,7 @@ const facebookConnect = async (
     const existingUser = await User.findOne({ fbId });
     if (existingUser) {
       return {
-        status: "Ok",
+        status: "Success",
         error: null,
         token: "Coming Soon"
       };
@@ -31,7 +31,7 @@ const facebookConnect = async (
     }).save();
 
       return {
-        status: "SUCCESS",
+        status: "Success",
         error: null,
         token: "coming soon"
       };
