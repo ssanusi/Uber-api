@@ -41,23 +41,23 @@ Add run commands and examples you think users will find useful. Provide an optio
 ### Public Resolvers:
 
 - [x] Sign In / Sign Up with Facebook
-- [ ] Sign In with Email
+- [x] Sign In with Email
 - [ ] Start Phone Number Verification
 - [ ] Complete Phone Number Verification
-- [ ] Sign Up with Email
+- [x] Sign Up with Email
 
 ---
 
 ### Authentication:
 
-- [ ] Generate JWT
-- [ ] Verifiy JWT
+- [x] Generate JWT
+- [x] Verify JWT
 
 ---
 
 ### Private Resolvers:
 
-- [ ] Get my Profile
+- [x] Get my Profile
 - [ ] Request Email Verification
 - [ ] Complete Email Verification
 - [ ] Update my Profile
@@ -79,7 +79,8 @@ Add run commands and examples you think users will find useful. Provide an optio
 - [ ] Get Chat Room Messages
 - [ ] Send a Chat Message
 - [ ] Subscribe to Chat Room Messages
-- [ ] Get Ride History -[ ] See Ride Detail
+- [ ] Get Ride History
+- [ ] See Ride Detail
 
 ## Contributing to <project_name>
 
