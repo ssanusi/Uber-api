@@ -1,6 +1,6 @@
 input EmailSignInInput {
-   email: String!
-   password: String!
+  email: String!
+  password: String!
 }
 
 type EmailSignInResponse {
@@ -10,5 +10,5 @@ type EmailSignInResponse {
 }
 
 type Mutation {
-   emailSignIn(input:EmailSignInInput): EmailSignInResponse!
+  emailSignIn(input: EmailSignInInput): EmailSignInResponse!
 }

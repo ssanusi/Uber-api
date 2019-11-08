@@ -88,6 +88,17 @@ type FacebookResponse {
   token: String
 }
 
+type GetMyProfileResponse {
+  status: String!
+  error: String
+  user: User
+}
+
+type Query {
+  getMyProfile: GetMyProfileResponse!
+  user: User
+}
+
 type User {
   id: ID!
   firstName: String!
@@ -113,10 +124,6 @@ type User {
   rideAsDriver: [Ride]
   createdAt: String!
   updatedAt: String
-}
-
-type Query {
-  user: User
 }
 
 type Verification {
