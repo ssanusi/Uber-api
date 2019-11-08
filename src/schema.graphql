@@ -56,7 +56,23 @@ type EmailSignInResponse {
 
 type Mutation {
   emailSignIn(input: EmailSignInInput): EmailSignInResponse!
+  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
   facebookConnect(input: FacebookUserInput!): FacebookResponse!
+}
+
+input EmailSignUpInput {
+  firstName: String!
+  lastName: String!
+  email: String!
+  password: String!
+  profilePhoto: String!
+  age: Int!
+}
+
+type EmailSignUpResponse {
+  status: String!
+  error: String
+  token: String
 }
 
 input FacebookUserInput {
