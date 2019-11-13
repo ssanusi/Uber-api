@@ -3,11 +3,11 @@
     "linterOptions": {
         "exclude": ["config/**/**.js", "node_modules/**/*."]
     },
-    "rules" : {
-        "no-console" : true,
+    "rules": {
+        "no-console": true,
         "member-access": false,
-        "object-literal-sort-keys" : false,
-        "ordered-imports" : true,
+        "object-literal-sort-keys": false,
+        "ordered-imports": true,
         "interface-name": false,
         "strict-null-checks": false
 

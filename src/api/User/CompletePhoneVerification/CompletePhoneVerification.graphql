@@ -1,0 +1,16 @@
+type CompletePhoneVerificationResponse {
+  status: String!
+  error: String
+  token: String
+}
+
+input CompletePhoneVerificationInput {
+  phoneNumber: String!
+  key: String!
+}
+
+type Mutation {
+  completePhoneVerification(
+    input: CompletePhoneVerificationInput!
+  ): CompletePhoneVerificationResponse!
+}

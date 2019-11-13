@@ -1,10 +1,12 @@
+scalar EmailAddress
+
 type User {
     id:ID!
     firstName: String!
     lastName: String!
     fullName: String
     age: Int
-    email: String
+    email: EmailAddress
     verifiedEmail: Boolean!
     password: String
     phoneNumber: String
@@ -19,7 +21,7 @@ type User {
     chat: Chat
     fbId: String
     messages: [Message]
-    rideAsPassanger: [Ride]
+    rideAsPassenger: [Ride]
     rideAsDriver: [Ride]
     createdAt: String!
     updatedAt: String

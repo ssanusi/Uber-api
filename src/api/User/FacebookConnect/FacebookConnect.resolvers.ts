@@ -1,13 +1,13 @@
 import User from "../../../entities/User";
 import {createToken} from "../../../utils/auth";
-import { FacebookResponse, FacebookUserInput } from "./../../../types/graph.d";
+import { FacebookConnectMutationArgs, FacebookResponse } from "./../../../types/graph.d";
 import { Resolvers } from "./../../../types/resolvers.d";
 
 const facebookConnect = async (
   _,
-  args: FacebookUserInput
+  args: FacebookConnectMutationArgs
 ): Promise<FacebookResponse> => {
-  const { fbId } = args;
+  const { input: { fbId }} = args;
   try {
     const existingUser = await User.findOne({ fbId });
     if (existingUser) {

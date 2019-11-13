@@ -16,11 +16,10 @@ import {
 import Chat from "./Chat";
 import Message from "./Message";
 import Ride from "./Ride";
-import Verification from "./Verification";
 
 const BCRYPT_ROUNDS = 10;
 
-@Entity()
+@Entity("users")
 class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
 
@@ -37,9 +36,9 @@ class User extends BaseEntity {
 
   @Column({ type: "text", unique: true })
   @IsEmail()
-  email: string | null;
+  email: string;
 
-  @Column({ type: "boolean" })
+  @Column({ type: "boolean", default: false })
   verifiedEmail: boolean;
 
   @Column({ type: "text", nullable: true })
@@ -74,9 +73,6 @@ class User extends BaseEntity {
 
   @Column({ type: "double precision", default: 0 })
   lastOrientation: number;
-
-  @OneToMany(type => Verification, verification => verification.user)
-  verification: Verification[];
 
   @ManyToOne(type => Chat, chat => chat.participants)
   chat: Chat;

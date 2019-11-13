@@ -10,5 +10,5 @@ type EmailSignInResponse {
 }
 
 type Mutation {
-  emailSignIn(input: EmailSignInInput): EmailSignInResponse!
+  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
 }
