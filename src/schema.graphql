@@ -56,6 +56,7 @@ type Mutation {
   facebookConnect(input: FacebookUserInput!): FacebookResponse!
   requestEmailVerification: RequestEmailVerificationResponse!
   startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
 }
 
 type CompletePhoneVerificationResponse {
@@ -157,6 +158,20 @@ type User {
 type StartPhoneVerificationResponse {
   status: String!
   error: String
+}
+
+type UpdateMyProfileResponse {
+  status: String!
+  error: String
+}
+
+input UpdateMyProfileInput {
+  firstName: String
+  lastName: String
+  email: EmailAddress
+  password: String
+  profilePhoto: String
+  age: Int
 }
 
 type Verification {
