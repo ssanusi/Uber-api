@@ -9,9 +9,10 @@ const createToken = (userId:string): string => {
 
 const verifyToken = async (token:string): Promise<User | undefined > => {
   try {
-    const decoded: any = jwt.verify(token, process.env.JWT_TOKEN || "")
+    const decoded: any = jwt.verify(token, process.env.JWT_KEY || "")
     const { id } = decoded;
-    const user = await User.findOne({ id })
+    const user = await User.findOne({ id });
+
     return user;
 
   } catch (error) {

@@ -10,7 +10,7 @@ import {
 import { statusType } from "./../types/types.d";
 import User from "./User";
 
-@Entity()
+@Entity("rides")
 class Ride extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
 
@@ -45,11 +45,10 @@ class Ride extends BaseEntity {
   duration: string;
 
   @ManyToOne(type => User, user => user.rideAsPassenger)
-  passenger: User
+  passenger: User;
 
   @ManyToOne(type => User, user => user.rideAsDriver)
-  driver: User
-
+  driver: User;
 
   @CreateDateColumn() createdAt: string;
   @UpdateDateColumn() updatedAt: string;

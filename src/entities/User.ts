@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { IsEmail, Length } from "class-validator";
 
 import {
+  AfterLoad,
   BaseEntity,
   BeforeInsert,
   BeforeUpdate,
@@ -16,13 +17,14 @@ import {
 import Chat from "./Chat";
 import Message from "./Message";
 import Ride from "./Ride";
-import Verification from "./Verification";
 
 const BCRYPT_ROUNDS = 10;
 
-@Entity()
+@Entity("users")
 class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
+
+  private temPassword: string;
 
   @Column({ type: "text" })
   @Length(3, 20)
@@ -37,9 +39,9 @@ class User extends BaseEntity {
 
   @Column({ type: "text", unique: true })
   @IsEmail()
-  email: string | null;
+  email: string;
 
-  @Column({ type: "boolean" })
+  @Column({ type: "boolean", default: false })
   verifiedEmail: boolean;
 
   @Column({ type: "text", nullable: true })
@@ -75,9 +77,6 @@ class User extends BaseEntity {
   @Column({ type: "double precision", default: 0 })
   lastOrientation: number;
 
-  @OneToMany(type => Verification, verification => verification.user)
-  verification: Verification[];
-
   @ManyToOne(type => Chat, chat => chat.participants)
   chat: Chat;
 
@@ -97,8 +96,13 @@ class User extends BaseEntity {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public comparePassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+  @AfterLoad()
+  private loadPassword(): void {
+    this.temPassword = this.password;
+    }
+
+  public async comparePassword(password: string) {
+    return await bcrypt.compare(password, this.password);
   }
 
   private hashPassword(password: string): Promise<string> {
@@ -108,8 +112,9 @@ class User extends BaseEntity {
   @BeforeInsert()
   @BeforeUpdate()
   async savePassword(): Promise<void> {
-    if (this.password) {
+    if (this.temPassword !== this.password) {
       this.password = await this.hashPassword(this.password);
+      this.loadPassword()
     }
   }
 }

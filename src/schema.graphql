@@ -1,7 +1,7 @@
 type Chat {
   id: ID!
   messages: [Message]!
-  paticipants: [User]!
+  participants: [User]!
   createdAt: String!
   updatedAt: String
 }
@@ -38,9 +38,35 @@ type Ride {
   price: Float!
   duration: String!
   driver: User!
-  passanger: User!
+  passenger: User!
   createdAt: String!
   updatedAt: String
+}
+
+type CompleteEmailVerificationResponse {
+  status: String!
+  error: String
+}
+
+type Mutation {
+  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
+  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
+  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
+  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
+  facebookConnect(input: FacebookUserInput!): FacebookResponse!
+  requestEmailVerification: RequestEmailVerificationResponse!
+  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+}
+
+type CompletePhoneVerificationResponse {
+  status: String!
+  error: String
+  token: String
+}
+
+input CompletePhoneVerificationInput {
+  phoneNumber: String!
+  key: String!
 }
 
 input EmailSignInInput {
@@ -54,18 +80,13 @@ type EmailSignInResponse {
   token: String
 }
 
-type Mutation {
-  emailSignIn(input: EmailSignInInput): EmailSignInResponse!
-  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
-  facebookConnect(input: FacebookUserInput!): FacebookResponse!
-}
-
 input EmailSignUpInput {
   firstName: String!
   lastName: String!
-  email: String!
+  email: EmailAddress!
   password: String!
   profilePhoto: String!
+  phoneNumber: String!
   age: Int!
 }
 
@@ -99,13 +120,20 @@ type Query {
   user: User
 }
 
+type RequestEmailVerificationResponse {
+  status: String!
+  error: String
+}
+
+scalar EmailAddress
+
 type User {
   id: ID!
   firstName: String!
   lastName: String!
   fullName: String
   age: Int
-  email: String
+  email: EmailAddress
   verifiedEmail: Boolean!
   password: String
   phoneNumber: String
@@ -120,10 +148,15 @@ type User {
   chat: Chat
   fbId: String
   messages: [Message]
-  rideAsPassanger: [Ride]
+  rideAsPassenger: [Ride]
   rideAsDriver: [Ride]
   createdAt: String!
   updatedAt: String
+}
+
+type StartPhoneVerificationResponse {
+  status: String!
+  error: String
 }
 
 type Verification {
@@ -131,7 +164,7 @@ type Verification {
   target: String!
   payload: String!
   key: String!
-  used: Boolean!
+  verified: Boolean!
   createdAt: String!
   updatedAt: String
 }

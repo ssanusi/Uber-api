@@ -1,16 +1,16 @@
 import User from "../../../entities/User";
 import {
-  EmailSignInInput,
+  EmailSignInMutationArgs,
   EmailSignInResponse
 } from "./../../../types/graph.d";
 import { Resolvers } from "./../../../types/resolvers.d";
-import {createToken} from "./../../../utils/auth";
+import { createToken } from "./../../../utils/auth";
 
 const emailSignIn = async (
   _,
-  args: EmailSignInInput
+  args: EmailSignInMutationArgs
 ): Promise<EmailSignInResponse> => {
-  const { email, password } = args;
+  const { input: { email, password } } = args;
   try {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
@@ -22,7 +22,7 @@ const emailSignIn = async (
     }
 
     const checkPassword = await existingUser.comparePassword(password);
-
+    console.log(password, existingUser.password)
     if (checkPassword) {
       const token = createToken(existingUser.id);
       return {

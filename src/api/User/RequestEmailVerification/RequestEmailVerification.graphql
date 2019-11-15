@@ -1,0 +1,8 @@
+type RequestEmailVerificationResponse{
+  status:String!
+  error: String
+}
+
+type Mutation {
+    requestEmailVerification:RequestEmailVerificationResponse!
+}

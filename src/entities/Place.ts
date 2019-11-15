@@ -7,7 +7,7 @@ import {
   UpdateDateColumn
 } from "typeorm";
 
-@Entity()
+@Entity("places")
 class Place extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
 
