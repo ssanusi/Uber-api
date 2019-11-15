@@ -22,7 +22,7 @@ const emailSignIn = async (
     }
 
     const checkPassword = await existingUser.comparePassword(password);
-
+    console.log(password, existingUser.password)
     if (checkPassword) {
       const token = createToken(existingUser.id);
       return {

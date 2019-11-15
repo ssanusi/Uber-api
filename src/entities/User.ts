@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { IsEmail, Length } from "class-validator";
 
 import {
+  AfterLoad,
   BaseEntity,
   BeforeInsert,
   BeforeUpdate,
@@ -22,6 +23,8 @@ const BCRYPT_ROUNDS = 10;
 @Entity("users")
 class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
+
+  private temPassword: string;
 
   @Column({ type: "text" })
   @Length(3, 20)
@@ -93,8 +96,13 @@ class User extends BaseEntity {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public comparePassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+  @AfterLoad()
+  private loadPassword(): void {
+    this.temPassword = this.password;
+    }
+
+  public async comparePassword(password: string) {
+    return await bcrypt.compare(password, this.password);
   }
 
   private hashPassword(password: string): Promise<string> {
@@ -104,8 +112,9 @@ class User extends BaseEntity {
   @BeforeInsert()
   @BeforeUpdate()
   async savePassword(): Promise<void> {
-    if (this.password) {
+    if (this.temPassword !== this.password) {
       this.password = await this.hashPassword(this.password);
+      this.loadPassword()
     }
   }
 }

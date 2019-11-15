@@ -1,31 +1,18 @@
-import * as api from "clicksend/api";
+import Twilio from "twilio";
 
-const smsMessage = new api.SmsMessage();
-const smsApi = new api.SMSApi(
-  process.env.CLICKSEND_USERNAME || "",
-  process.env.CLICKSEND_API_KEY || ""
-);
-const smsCollection = new api.SmsMessageCollection();
 
-const sendSMS = (from: string, to: string, body: string) => {
-  const smsMessages = { ...smsMessage, from, to, body };
-  smsCollection.messages = [smsMessages];
-  smsApi
-    .smsSendPost(smsCollection)
-    .then(function(response) {
-		console.log(response.body);
-		return response
-    })
-    .catch(function(err) {
-		console.error(err.body);
-		return err
-    });
+const twilioClient = Twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+
+const sendSMS = (to: string, body: string) => {
+	return twilioClient.messages.create({
+		to,
+		body,
+		from: process.env.TWILIO_PHONE
+	  });
 };
 
 export const sendVerificationSMS = (to: string, key: string) => {
 	const body = `Please verify your Phone Number wit the key ${key}`
-	const from = process.env.PHONE || ""
-	return sendSMS(from, to, body )
-
+	return sendSMS(to, body )
 }
 

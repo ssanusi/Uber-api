@@ -20,7 +20,7 @@ const requestEmailVerification = authResolver(
           payload: user.email,
           target: "EMAIL"
         }).save();
-        await sendVerificationEmail(user.email, newVerification.key);
+        await sendVerificationEmail(user.email,user.fullName,newVerification.key);
         return {
           status: "Success",
           error: null

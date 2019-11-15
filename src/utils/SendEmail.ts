@@ -1,24 +1,24 @@
-import Mailgun from "mailgun-js";
+import SENDGRID from '@sendgrid/mail';
 
-const mailGunClient = new Mailgun({
-  apiKey: process.env.MAILGUN_API_KEY || "",
-  domain: process.env.MAILGUN_DOMAIN || ""
-});
+SENDGRID.setApiKey(process.env.SENDGRID_API_KEY || "")
 
-const sendEmail = (subject: string, html: string) => {
-  const emailData = {
-    from: "sulaiman.sanusi@icloud.com",
-    to: "sulaiman.sanusi@icloud.com",
+
+const sendEmail = (to:string, subject: string, text: string) => {
+  const msg = {
+    from: "no-reply@uberclone.com",
+    to,
     subject,
-    html
+    text
   };
-  return mailGunClient.messages().send(emailData);
+  return SENDGRID.send(msg);;
 };
 
-export const sendVerificationEmail = (fullName: string, key: string) => {
+export const sendVerificationEmail = (to:string, fullName: string, key: string) => {
   const emailSubject = `Hello! ${fullName}, Please verify your Email`;
-  const emailBody = `Verify your email by clicking this link <a href="http://localhost.com/verification/${key}">here</a`;
-  return sendEmail(emailSubject, emailBody);
+  const emailBody = `Verify your email by clicking this link ${key}`;
+  return sendEmail(to,emailSubject, emailBody);
 };
+
+
 
 

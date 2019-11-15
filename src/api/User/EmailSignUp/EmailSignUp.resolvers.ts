@@ -10,12 +10,6 @@ import {
 import { Resolvers } from "./../../../types/resolvers.d";
 import { sendVerificationEmail } from "./../../../utils/SendEmail";
 
-// function customValidator<T>(input: any, schema: new () => T) {
-//   const data = new schema();
-//   Object.assign(data, input);
-//   return validate(data);
-// }
-
 const emailSignUp = async (
   _,
   args: EmailSignUpMutationArgs
@@ -24,17 +18,7 @@ const emailSignUp = async (
     input: { email, phoneNumber }
   } = args;
   try {
-    // const errors = await customValidator(args.input, User);
-    // if (errors.length) {
-    //   throw new Error(
-    //     "Validation failed" +
-    //       errors
-    //         .map(a => a.toString())
-    //         .reduce((a, b) => {
-    //           return a + "\n" + b;
-    //         })
-    //   );
-    // }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return {
@@ -54,8 +38,7 @@ const emailSignUp = async (
             payload: newUser.email,
             target: "EMAIL"
           }).save();
-
-          await sendVerificationEmail(newUser.fullName, emailVerification.key);
+          await sendVerificationEmail(newUser.email,newUser.fullName, emailVerification.key);
         }
         const token = createToken(newUser.id);
         return {
