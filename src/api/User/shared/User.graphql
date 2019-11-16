@@ -18,6 +18,7 @@ type User {
     lastLat: Float
     lastLog: Float
     lastOrientation: Float
+    places:[Place]
     chat: Chat
     fbId: String
     messages: [Message]

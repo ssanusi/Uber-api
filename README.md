@@ -62,8 +62,8 @@ Add run commands and examples you think users will find useful. Provide an optio
 - [x] Complete Email Verification
 - [x] Update my Profile
 - [x] Toggle Driving Mode
-- [ ] Report Location / Orientation
-- [ ] Add Place
+- [x] Report Location / Orientation
+- [x] Add Place
 - [ ] Edit Place
 - [ ] Delete Place
 - [ ] Get My Places

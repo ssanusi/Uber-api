@@ -15,6 +15,33 @@ type Message {
   updatedAt: String
 }
 
+type AddPlaceResponse {
+  status: String!
+  error: String
+}
+
+input AddPlacesInput {
+  name: String!
+  log: Float!
+  lat: Float!
+  address: String!
+  isFav: Boolean!
+}
+
+type Mutation {
+  addPlace(input: AddPlacesInput): AddPlaceResponse!
+  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
+  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
+  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
+  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
+  facebookConnect(input: FacebookUserInput!): FacebookResponse!
+  reportMovement(input: ReportMovementInput!): ReportMovementResponse!
+  requestEmailVerification: RequestEmailVerificationResponse!
+  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+  toggleDrivingMode: ToggleDrivingModeResponse!
+  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
+}
+
 type Place {
   id: ID!
   name: String!
@@ -22,6 +49,7 @@ type Place {
   lat: Float!
   address: String!
   isFav: Boolean!
+  user: User!
   createdAt: String!
   updateAt: String
 }
@@ -46,19 +74,6 @@ type Ride {
 type CompleteEmailVerificationResponse {
   status: String!
   error: String
-}
-
-type Mutation {
-  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
-  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
-  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
-  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
-  facebookConnect(input: FacebookUserInput!): FacebookResponse!
-  reportMovement(input: ReportMovementInput!): ReportMovementResponse!
-  requestEmailVerification: RequestEmailVerificationResponse!
-  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
-  toggleDrivingMode: ToggleDrivingModeResponse!
-  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
 }
 
 type CompletePhoneVerificationResponse {
@@ -159,6 +174,7 @@ type User {
   lastLat: Float
   lastLog: Float
   lastOrientation: Float
+  places: [Place]
   chat: Chat
   fbId: String
   messages: [Message]
