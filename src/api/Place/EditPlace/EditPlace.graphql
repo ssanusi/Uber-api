@@ -1,0 +1,14 @@
+type EditPlaceResponse{
+    status: String!
+    error: String
+}
+
+input EditPlaceInput {
+    placeId:String!
+    name: String
+    isFav: String
+}
+
+type Mutation {
+    editPlace(input:EditPlaceInput!): EditPlaceResponse!
+}
