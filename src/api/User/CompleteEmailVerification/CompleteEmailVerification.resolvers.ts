@@ -5,6 +5,7 @@ import {
   CompleteEmailVerificationResponse
 } from "./../../../types/graph.d";
 import { Resolvers } from "./../../../types/resolvers.d";
+
 const completeEmailVerification = async (
   _,
   args: CompleteEmailVerificationMutationArgs,

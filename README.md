@@ -42,8 +42,8 @@ Add run commands and examples you think users will find useful. Provide an optio
 
 - [x] Sign In / Sign Up with Facebook
 - [x] Sign In with Email
-- [ ] Start Phone Number Verification
-- [ ] Complete Phone Number Verification
+- [x] Start Phone Number Verification
+- [x] Complete Phone Number Verification
 - [x] Sign Up with Email
 
 ---

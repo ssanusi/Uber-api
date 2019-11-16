@@ -43,26 +43,22 @@ type Ride {
   updatedAt: String
 }
 
-type ToggleDrivingModeResponse {
+type CompleteEmailVerificationResponse {
   status: String!
   error: String
 }
 
 type Mutation {
-  toggleDrivingMode: ToggleDrivingModeResponse!
   completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
   completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
   emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
   emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
   facebookConnect(input: FacebookUserInput!): FacebookResponse!
+  reportMovement(input: ReportMovementInput!): ReportMovementResponse!
   requestEmailVerification: RequestEmailVerificationResponse!
   startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+  toggleDrivingMode: ToggleDrivingModeResponse!
   updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
-}
-
-type CompleteEmailVerificationResponse {
-  status: String!
-  error: String
 }
 
 type CompletePhoneVerificationResponse {
@@ -127,6 +123,17 @@ type Query {
   user: User
 }
 
+type ReportMovementResponse {
+  status: String!
+  error: String
+}
+
+input ReportMovementInput {
+  lat: Float
+  log: Float
+  lastOrientation: Float
+}
+
 type RequestEmailVerificationResponse {
   status: String!
   error: String
@@ -162,6 +169,11 @@ type User {
 }
 
 type StartPhoneVerificationResponse {
+  status: String!
+  error: String
+}
+
+type ToggleDrivingModeResponse {
   status: String!
   error: String
 }

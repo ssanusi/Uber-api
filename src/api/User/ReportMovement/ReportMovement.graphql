@@ -1,0 +1,14 @@
+type ReportMovementResponse{
+    status: String!
+    error: String
+}
+
+input ReportMovementInput {
+    lat: Float
+    log: Float
+    lastOrientation: Float
+}
+
+type Mutation {
+    reportMovement(input:ReportMovementInput!):ReportMovementResponse!
+}
