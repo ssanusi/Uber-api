@@ -1,0 +1,8 @@
+type DeletePlaceResponse{
+    status:String!
+    error:String
+}
+
+type Mutation {
+    deletePlace(placeId:String!): DeletePlaceResponse!
+}

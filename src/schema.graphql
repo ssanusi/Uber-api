@@ -30,6 +30,7 @@ input AddPlacesInput {
 
 type Mutation {
   addPlace(input: AddPlacesInput): AddPlaceResponse!
+  deletePlace(placeId: String!): DeletePlaceResponse!
   editPlace(input: EditPlaceInput!): EditPlaceResponse!
   completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
   completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
@@ -41,6 +42,11 @@ type Mutation {
   startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
   toggleDrivingMode: ToggleDrivingModeResponse!
   updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
+}
+
+type DeletePlaceResponse {
+  status: String!
+  error: String
 }
 
 type EditPlaceResponse {
