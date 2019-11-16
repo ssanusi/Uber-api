@@ -26,6 +26,9 @@ class Place extends BaseEntity {
   @Column({ type: "text" })
   address: string;
 
+  @Column({ nullable: true })
+  userId: string;
+
   @ManyToOne(type => User, user => user.places)
   user:User
 
