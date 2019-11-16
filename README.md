@@ -58,10 +58,10 @@ Add run commands and examples you think users will find useful. Provide an optio
 ### Private Resolvers:
 
 - [x] Get my Profile
-- [ ] Request Email Verification
-- [ ] Complete Email Verification
-- [ ] Update my Profile
-- [ ] Toggle Driving Mode
+- [x] Request Email Verification
+- [x] Complete Email Verification
+- [x] Update my Profile
+- [x] Toggle Driving Mode
 - [ ] Report Location / Orientation
 - [ ] Add Place
 - [ ] Edit Place
