@@ -1,7 +1,7 @@
 import User from '../../../entities/User';
+import { ToggleDrivingModeResponse } from '../../../types/graph';
 import { Resolvers } from '../../../types/resolvers';
 import authResolver from '../../../utils/resolverMiddleware';
-import { ToggleDrivingModeResponse } from './../../../types/graph.d';
 
 const toggleDrivingMode = authResolver(async (_, __, { req }): Promise<ToggleDrivingModeResponse> => {
     const user: User = req.user;
