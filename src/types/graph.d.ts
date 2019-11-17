@@ -1,15 +1,29 @@
-export const typeDefs = ["type Chat {\n  id: ID!\n  messages: [Message]!\n  participants: [User]!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  user: User!\n  chat: Chat!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype AddPlaceResponse {\n  status: String!\n  error: String\n}\n\ninput AddPlacesInput {\n  name: String!\n  log: Float!\n  lat: Float!\n  address: String!\n  isFav: Boolean!\n}\n\ntype Mutation {\n  addPlace(input: AddPlacesInput): AddPlaceResponse!\n  deletePlace(placeId: String!): DeletePlaceResponse!\n  editPlace(input: EditPlaceInput!): EditPlaceResponse!\n  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!\n  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!\n  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!\n  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!\n  facebookConnect(input: FacebookUserInput!): FacebookResponse!\n  reportMovement(input: ReportMovementInput!): ReportMovementResponse!\n  requestEmailVerification: RequestEmailVerificationResponse!\n  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!\n  toggleDrivingMode: ToggleDrivingModeResponse!\n  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!\n}\n\ntype DeletePlaceResponse {\n  status: String!\n  error: String\n}\n\ntype EditPlaceResponse {\n  status: String!\n  error: String\n}\n\ninput EditPlaceInput {\n  placeId: String!\n  name: String\n  isFav: String\n}\n\ntype Place {\n  id: ID!\n  name: String!\n  log: Float!\n  lat: Float!\n  address: String!\n  isFav: Boolean!\n  user: User!\n  createdAt: String!\n  updateAt: String\n}\n\ntype Ride {\n  id: ID!\n  status: String!\n  pickupAddress: String!\n  pickupLog: Float!\n  pickupLat: Float!\n  dropOffAddress: String!\n  dropOffLog: Float!\n  dropOffLat: Float!\n  price: Float!\n  duration: String!\n  driver: User!\n  passenger: User!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype CompleteEmailVerificationResponse {\n  status: String!\n  error: String\n}\n\ntype CompletePhoneVerificationResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ninput CompletePhoneVerificationInput {\n  phoneNumber: String!\n  key: String!\n}\n\ninput EmailSignInInput {\n  email: String!\n  password: String!\n}\n\ntype EmailSignInResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ninput EmailSignUpInput {\n  firstName: String!\n  lastName: String!\n  email: EmailAddress!\n  password: String!\n  profilePhoto: String!\n  phoneNumber: String!\n  age: Int!\n}\n\ntype EmailSignUpResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ninput FacebookUserInput {\n  firstName: String!\n  lastName: String!\n  email: String\n  fbId: String!\n}\n\ntype FacebookResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ntype GetMyProfileResponse {\n  status: String!\n  error: String\n  user: User\n}\n\ntype Query {\n  getMyProfile: GetMyProfileResponse!\n  user: User\n}\n\ntype ReportMovementResponse {\n  status: String!\n  error: String\n}\n\ninput ReportMovementInput {\n  lat: Float\n  log: Float\n  lastOrientation: Float\n}\n\ntype RequestEmailVerificationResponse {\n  status: String!\n  error: String\n}\n\nscalar EmailAddress\n\ntype User {\n  id: ID!\n  firstName: String!\n  lastName: String!\n  fullName: String\n  age: Int\n  email: EmailAddress\n  verifiedEmail: Boolean!\n  password: String\n  phoneNumber: String\n  verifiedPhoneNumber: Boolean!\n  profilePhoto: String!\n  isDriving: Boolean!\n  isTaken: Boolean!\n  isRiding: Boolean!\n  lastLat: Float\n  lastLog: Float\n  lastOrientation: Float\n  places: [Place]\n  chat: Chat\n  fbId: String\n  messages: [Message]\n  rideAsPassenger: [Ride]\n  rideAsDriver: [Ride]\n  createdAt: String!\n  updatedAt: String\n}\n\ntype StartPhoneVerificationResponse {\n  status: String!\n  error: String\n}\n\ntype ToggleDrivingModeResponse {\n  status: String!\n  error: String\n}\n\ntype UpdateMyProfileResponse {\n  status: String!\n  error: String\n}\n\ninput UpdateMyProfileInput {\n  firstName: String\n  lastName: String\n  email: EmailAddress\n  password: String\n  profilePhoto: String\n  age: Int\n}\n\ntype Verification {\n  id: ID!\n  target: String!\n  payload: String!\n  key: String!\n  verified: Boolean!\n  createdAt: String!\n  updatedAt: String\n}\n"];
+export const typeDefs = ["type Chat {\n  id: ID!\n  messages: [Message]!\n  participants: [User]!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Message {\n  id: ID!\n  text: String!\n  user: User!\n  chat: Chat!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype AddPlaceResponse {\n  status: String!\n  error: String\n}\n\ninput AddPlacesInput {\n  name: String!\n  log: Float!\n  lat: Float!\n  address: String!\n  isFav: Boolean!\n}\n\ntype Mutation {\n  addPlace(input: AddPlacesInput): AddPlaceResponse!\n  deletePlace(placeId: String!): DeletePlaceResponse!\n  editPlace(input: EditPlaceInput!): EditPlaceResponse!\n  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!\n  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!\n  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!\n  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!\n  facebookConnect(input: FacebookUserInput!): FacebookResponse!\n  reportMovement(input: ReportMovementInput!): ReportMovementResponse!\n  requestEmailVerification: RequestEmailVerificationResponse!\n  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!\n  toggleDrivingMode: ToggleDrivingModeResponse!\n  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!\n}\n\ntype DeletePlaceResponse {\n  status: String!\n  error: String\n}\n\ntype EditPlaceResponse {\n  status: String!\n  error: String\n}\n\ninput EditPlaceInput {\n  placeId: String!\n  name: String\n  isFav: Boolean\n}\n\ntype GetMyPlacesResponse {\n  status: String!\n  error: String\n  places: [Place]\n}\n\ntype Query {\n  getMyPlaces: GetMyPlacesResponse!\n  getMyProfile: GetMyProfileResponse!\n  user: User\n}\n\ntype Place {\n  id: ID!\n  name: String!\n  lat: Float!\n  log: Float!\n  address: String!\n  isFav: Boolean!\n  userId: ID!\n  user: User!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype Ride {\n  id: ID!\n  status: String!\n  pickupAddress: String!\n  pickupLog: Float!\n  pickupLat: Float!\n  dropOffAddress: String!\n  dropOffLog: Float!\n  dropOffLat: Float!\n  price: Float!\n  duration: String!\n  driver: User!\n  passenger: User!\n  createdAt: String!\n  updatedAt: String\n}\n\ntype CompleteEmailVerificationResponse {\n  status: String!\n  error: String\n}\n\ntype CompletePhoneVerificationResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ninput CompletePhoneVerificationInput {\n  phoneNumber: String!\n  key: String!\n}\n\ninput EmailSignInInput {\n  email: String!\n  password: String!\n}\n\ntype EmailSignInResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ninput EmailSignUpInput {\n  firstName: String!\n  lastName: String!\n  email: EmailAddress!\n  password: String!\n  profilePhoto: String!\n  phoneNumber: String!\n  age: Int!\n}\n\ntype EmailSignUpResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ninput FacebookUserInput {\n  firstName: String!\n  lastName: String!\n  email: String\n  fbId: String!\n}\n\ntype FacebookResponse {\n  status: String!\n  error: String\n  token: String\n}\n\ntype GetMyProfileResponse {\n  status: String!\n  error: String\n  user: User\n}\n\ntype ReportMovementResponse {\n  status: String!\n  error: String\n}\n\ninput ReportMovementInput {\n  lat: Float\n  log: Float\n  lastOrientation: Float\n}\n\ntype RequestEmailVerificationResponse {\n  status: String!\n  error: String\n}\n\nscalar EmailAddress\n\ntype User {\n  id: ID!\n  firstName: String!\n  lastName: String!\n  fullName: String\n  age: Int\n  email: EmailAddress\n  verifiedEmail: Boolean!\n  password: String\n  phoneNumber: String\n  verifiedPhoneNumber: Boolean!\n  profilePhoto: String!\n  isDriving: Boolean!\n  isTaken: Boolean!\n  isRiding: Boolean!\n  lastLat: Float\n  lastLog: Float\n  lastOrientation: Float\n  places: [Place]\n  chat: Chat\n  fbId: String\n  messages: [Message]\n  rideAsPassenger: [Ride]\n  rideAsDriver: [Ride]\n  createdAt: String!\n  updatedAt: String\n}\n\ntype StartPhoneVerificationResponse {\n  status: String!\n  error: String\n}\n\ntype ToggleDrivingModeResponse {\n  status: String!\n  error: String\n}\n\ntype UpdateMyProfileResponse {\n  status: String!\n  error: String\n}\n\ninput UpdateMyProfileInput {\n  firstName: String\n  lastName: String\n  email: EmailAddress\n  password: String\n  profilePhoto: String\n  age: Int\n}\n\ntype Verification {\n  id: ID!\n  target: String!\n  payload: String!\n  key: String!\n  verified: Boolean!\n  createdAt: String!\n  updatedAt: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
+  getMyPlaces: GetMyPlacesResponse;
   getMyProfile: GetMyProfileResponse;
   user: User | null;
 }
 
-export interface GetMyProfileResponse {
+export interface GetMyPlacesResponse {
   status: string;
   error: string | null;
-  user: User | null;
+  places: Array<Place> | null;
+}
+
+export interface Place {
+  id: string;
+  name: string;
+  lat: number;
+  log: number;
+  address: string;
+  isFav: boolean;
+  userId: string;
+  user: User;
+  createdAt: string;
+  updatedAt: string | null;
 }
 
 export interface User {
@@ -41,18 +55,6 @@ export interface User {
 }
 
 export type EmailAddress = any;
-
-export interface Place {
-  id: string;
-  name: string;
-  log: number;
-  lat: number;
-  address: string;
-  isFav: boolean;
-  user: User;
-  createdAt: string;
-  updateAt: string | null;
-}
 
 export interface Chat {
   id: string;
@@ -86,6 +88,12 @@ export interface Ride {
   passenger: User;
   createdAt: string;
   updatedAt: string | null;
+}
+
+export interface GetMyProfileResponse {
+  status: string;
+  error: string | null;
+  user: User | null;
 }
 
 export interface Mutation {
@@ -169,7 +177,7 @@ export interface DeletePlaceResponse {
 export interface EditPlaceInput {
   placeId: string;
   name: string | null;
-  isFav: string | null;
+  isFav: boolean | null;
 }
 
 export interface EditPlaceResponse {

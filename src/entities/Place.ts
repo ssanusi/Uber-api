@@ -26,6 +26,9 @@ class Place extends BaseEntity {
   @Column({ type: "text" })
   address: string;
 
+  @Column({ type: "boolean", default: false })
+  isFav: boolean;
+
   @Column({ nullable: true })
   userId: string;
 
