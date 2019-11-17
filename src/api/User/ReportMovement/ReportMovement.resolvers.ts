@@ -1,32 +1,41 @@
-import User from '../../../entities/User';
-import { Resolvers } from '../../../types/resolvers';
-import removeNull from '../../../utils/removeNull';
-import authResolver from '../../../utils/resolverMiddleware';
-import { ReportMovementMutationArgs, ReportMovementResponse } from './../../../types/graph.d';
+import User from "../../../entities/User";
+import { Resolvers } from "../../../types/resolvers";
+import removeNull from "../../../utils/removeNull";
+import authResolver from "../../../utils/resolverMiddleware";
+import {
+  ReportMovementMutationArgs,
+  ReportMovementResponse
+} from "./../../../types/graph.d";
 
-const reportMovement = authResolver(async (_, args: ReportMovementMutationArgs, { req }): Promise<ReportMovementResponse> => {
+const reportMovement = authResolver(
+  async (
+    _,
+    args: ReportMovementMutationArgs,
+    { req, pubSub }
+  ): Promise<ReportMovementResponse> => {
     const user: User = req.user;
-    const { input } = args
+    const { input } = args;
     const notNull = removeNull(input);
     try {
         await User.update({ id: user.id }, { ...notNull });
-        return {
-            status: "Success",
-            error: null
-        }
-
+        pubSub.publish("driverUpdate", { driverSubscription: user})
+      return {
+        status: "Success",
+        error: null
+      };
     } catch (error) {
-        return {
-            status: "Fail",
-            error: error.message
-     }
+      return {
+        status: "Fail",
+        error: error.message
+      };
     }
-})
+  }
+);
 
 const resolvers: Resolvers = {
-    Mutation :{
-        reportMovement
-    }
-}
+  Mutation: {
+    reportMovement
+  }
+};
 
 export default resolvers;

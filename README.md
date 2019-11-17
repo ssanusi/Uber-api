@@ -68,7 +68,7 @@ Add run commands and examples you think users will find useful. Provide an optio
 - [x] Delete Place
 - [x] Get My Places
 - [X] See Nearby Drivers
-- [ ] Subscribe to Nearby Drivers
+- [X] Subscribe to Nearby Drivers
 - [ ] Request a Ride
 - [ ] Get Nearby Ride Requests
 - [ ] Subscribe to Nearby Ride Requests
