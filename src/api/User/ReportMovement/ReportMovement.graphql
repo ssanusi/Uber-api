@@ -4,8 +4,8 @@ type ReportMovementResponse{
 }
 
 input ReportMovementInput {
-    lat: Float
-    log: Float
+    lastLat: Float
+    lastLog: Float
     lastOrientation: Float
 }
 
