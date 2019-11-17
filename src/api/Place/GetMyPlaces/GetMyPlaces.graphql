@@ -1,0 +1,11 @@
+type GetMyPlacesResponse {
+  status: String!
+  error: String
+  places: [Place]
+}
+
+
+
+type Query {
+  getMyPlaces: GetMyPlacesResponse!
+}

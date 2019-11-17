@@ -8,7 +8,7 @@ const addPlace = authResolver(async (_, args: AddPlaceMutationArgs, { req }): Pr
     const user: User = req.user;
     const { input } = args;
     try {
-        await Place.create({ ...input, user });
+        await Place.create({ ...input, user }).save();
         return {
             status: "Success",
             error: null

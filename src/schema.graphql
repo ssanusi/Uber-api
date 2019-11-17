@@ -57,19 +57,32 @@ type EditPlaceResponse {
 input EditPlaceInput {
   placeId: String!
   name: String
-  isFav: String
+  isFav: Boolean
+}
+
+type GetMyPlacesResponse {
+  status: String!
+  error: String
+  places: [Place]
+}
+
+type Query {
+  getMyPlaces: GetMyPlacesResponse!
+  getMyProfile: GetMyProfileResponse!
+  user: User
 }
 
 type Place {
   id: ID!
   name: String!
-  log: Float!
   lat: Float!
+  log: Float!
   address: String!
   isFav: Boolean!
+  userId: ID!
   user: User!
   createdAt: String!
-  updateAt: String
+  updatedAt: String
 }
 
 type Ride {
@@ -148,11 +161,6 @@ type FacebookResponse {
 type GetMyProfileResponse {
   status: String!
   error: String
-  user: User
-}
-
-type Query {
-  getMyProfile: GetMyProfileResponse!
   user: User
 }
 

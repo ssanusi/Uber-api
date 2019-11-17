@@ -9,7 +9,6 @@ input AddPlacesInput {
     lat: Float!
     address: String!
     isFav: Boolean!
-
 }
 
 type Mutation {

@@ -1,11 +1,12 @@
 type Place {
-    id: ID!
-    name: String!
-    log: Float!
-    lat: Float!
-    address: String!
-    isFav: Boolean!
-    user: User!
-    createdAt: String!
-    updateAt: String
+  id: ID!
+  name: String!
+  lat: Float!
+  log: Float!
+  address: String!
+  isFav: Boolean!
+  userId: ID!
+  user: User!
+  createdAt: String!
+  updatedAt: String
 }

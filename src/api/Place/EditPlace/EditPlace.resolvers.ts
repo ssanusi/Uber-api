@@ -12,13 +12,15 @@ const editPlace = authResolver(
     { req }
   ): Promise<EditPlaceResponse> => {
     const user: User = req.user;
-    const { input } = args;
-    const notNUll = removeNull(input);
+        const { input } = args;
+        const { placeId, ...params } = input
+        const notNUll = removeNull(params);
+
     try {
-      const place = await Place.findOne({ id: input.placeId });
+        const place = await Place.findOne({ id: placeId });
         if (place) {
             if (place.userId === user.id) {
-                await Place.update({ id: input.placeId }, { ...notNUll });
+                await Place.update({ id: placeId }, { ...notNUll });
                 return {
                     status: "Success",
                     error: null
