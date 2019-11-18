@@ -69,6 +69,7 @@ type GetMyPlacesResponse {
 
 type Query {
   getMyPlaces: GetMyPlacesResponse!
+  getNearbyRide: GetNearbyRideResponse!
   getMyProfile: GetMyProfileResponse!
   getNearbyDrivers: GetNearbyDriversResponse!
   user: User
@@ -85,6 +86,12 @@ type Place {
   user: User!
   createdAt: String!
   updatedAt: String
+}
+
+type GetNearbyRideResponse {
+  status: String!
+  error: String
+  ride: Ride
 }
 
 type RequestRideResponse {
