@@ -32,6 +32,7 @@ type Mutation {
   addPlace(input: AddPlacesInput): AddPlaceResponse!
   deletePlace(placeId: String!): DeletePlaceResponse!
   editPlace(input: EditPlaceInput!): EditPlaceResponse!
+  requestRide(input: RequestRideInput): RequestRideResponse!
   completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
   completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
   emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
@@ -86,6 +87,32 @@ type Place {
   updatedAt: String
 }
 
+type RequestRideResponse {
+  status: String!
+  error: String
+  ride: Ride
+}
+
+enum statusType {
+  ACCEPTED
+  CANCELED
+  TRANSIT
+  REQUESTING
+  FINISHED
+}
+
+input RequestRideInput {
+  status: statusType!
+  pickupAddress: String!
+  pickupLog: Float!
+  pickupLat: Float!
+  dropOffAddress: String!
+  dropOffLog: Float!
+  dropOffLat: Float!
+  price: Float!
+  duration: String!
+}
+
 type Ride {
   id: ID!
   status: String!
@@ -97,7 +124,7 @@ type Ride {
   dropOffLat: Float!
   price: Float!
   duration: String!
-  driver: User!
+  driver: User
   passenger: User!
   createdAt: String!
   updatedAt: String
