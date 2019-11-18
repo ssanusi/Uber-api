@@ -73,7 +73,7 @@ Add run commands and examples you think users will find useful. Provide an optio
 - [x] Get Nearby Ride Requests
 - [x] Subscribe to Nearby Ride Requests
 - [x] Update Ride Status
-- [ ] Get Ride
+- [X] Get Ride
 - [ ] Subscribe to Ride Status
 - [ ] Create a Chat Room
 - [ ] Get Chat Room Messages
