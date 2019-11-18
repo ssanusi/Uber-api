@@ -11,13 +11,14 @@ const requestRide = authResolver(
   async (
     _,
     args: RequestRideMutationArgs,
-    { req }
+    { req, pubSub }
   ): Promise<RequestRideResponse> => {
     const user: User = req.user;
     const { input } = args;
-    const rideData = {...input, passenger:user }
+    const rideData = { ...input, passenger: user };
     try {
       const ride = await Ride.create(rideData).save();
+      pubSub.publish("rideRequest", { nearbySubscription: ride });
       return {
         status: "Success",
         error: null,

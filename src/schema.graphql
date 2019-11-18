@@ -94,6 +94,11 @@ type GetNearbyRideResponse {
   ride: Ride
 }
 
+type Subscription {
+  nearbyRideSubscription: Ride
+  driverSubscription: User
+}
+
 type RequestRideResponse {
   status: String!
   error: String
@@ -151,10 +156,6 @@ type CompletePhoneVerificationResponse {
 input CompletePhoneVerificationInput {
   phoneNumber: String!
   key: String!
-}
-
-type Subscription {
-  driverSubscription: User
 }
 
 input EmailSignInInput {
