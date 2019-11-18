@@ -1,0 +1,9 @@
+type GetChatResponse {
+    status: String!
+    error: String
+    chat: Chat
+}
+
+type Query {
+    getChat(chatId: ID!):GetChatResponse!
+}
