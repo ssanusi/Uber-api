@@ -1,5 +1,6 @@
 import {
   BaseEntity,
+  Column,
   CreateDateColumn,
   Entity,
   ManyToOne,
@@ -12,6 +13,9 @@ import User from "./User";
 @Entity("messages")
 class Message extends BaseEntity {
   @PrimaryGeneratedColumn("uuid") id: string;
+
+  @Column({ type: "text" })
+  text: string;
 
   @ManyToOne(type => Chat, chat => chat.messages)
   chat: Chat;

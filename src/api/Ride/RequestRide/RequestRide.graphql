@@ -1,0 +1,29 @@
+type RequestRideResponse {
+    status: String!
+    error: String
+    ride: Ride
+}
+
+enum statusType {
+    ACCEPTED
+    CANCELED
+    TRANSIT
+    REQUESTING
+    FINISHED
+}
+
+input RequestRideInput {
+    status: statusType!
+    pickupAddress: String!
+    pickupLog: Float!
+    pickupLat: Float!
+    dropOffAddress: String!
+    dropOffLog: Float!
+    dropOffLat: Float!
+    price: Float!
+    duration: String!
+}
+
+type Mutation {
+    requestRide(input:RequestRideInput): RequestRideResponse!
+}

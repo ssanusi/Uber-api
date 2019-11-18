@@ -2,6 +2,6 @@ export type verificationTarget = "PHONE" | "EMAIL";
 export type statusType =
   | "ACCEPTED"
   | "CANCELED"
-  | "ONROUTE"
+  | "TRANSIT"
   | "REQUESTING"
   | "FINISHED";

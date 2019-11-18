@@ -1,9 +1,10 @@
 import User from "../../../entities/User";
+import { GetMyPlacesResponse } from '../../../types/graph.d';
 import { Resolvers } from "../../../types/resolvers";
 import authResolver from "../../../utils/resolverMiddleware";
 
 const getMyPlaces = authResolver(
-  async (_, __, { req }) => {
+  async (_, __, { req }):Promise<GetMyPlacesResponse> => {
     try {
       const user = await User.findOne(
         { id: req.user.id },
