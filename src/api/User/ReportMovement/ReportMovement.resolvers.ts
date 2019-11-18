@@ -17,8 +17,10 @@ const reportMovement = authResolver(
     const { input } = args;
     const notNull = removeNull(input);
     try {
-        await User.update({ id: user.id }, { ...notNull });
-        pubSub.publish("driverUpdate", { driverSubscription: user})
+      await User.update({ id: user.id }, { ...notNull });
+      const updatedUser = await User.findOne({ id: user.id });
+
+      pubSub.publish("driverUpdate", { driverSubscription: updatedUser });
       return {
         status: "Success",
         error: null
