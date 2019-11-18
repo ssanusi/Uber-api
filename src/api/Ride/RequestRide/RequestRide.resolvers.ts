@@ -16,18 +16,27 @@ const requestRide = authResolver(
     const user: User = req.user;
     const { input } = args;
     const rideData = { ...input, passenger: user };
-    try {
-      const ride = await Ride.create(rideData).save();
-      pubSub.publish("rideRequest", { nearbySubscription: ride });
-      return {
-        status: "Success",
-        error: null,
-        ride
-      };
-    } catch (error) {
+
+    if (!user.isRiding && !user.isDriving) {
+      try {
+        const ride = await Ride.create(rideData).save();
+        pubSub.publish("rideRequest", { nearbySubscription: ride });
+        return {
+          status: "Success",
+          error: null,
+          ride
+        };
+      } catch (error) {
+        return {
+          status: "Fail",
+          error: error.message,
+          ride: null
+        };
+      }
+    } else {
       return {
         status: "Fail",
-        error: error.message,
+        error: "You  can't request two rides or drive and request",
         ride: null
       };
     }

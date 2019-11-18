@@ -39,6 +39,12 @@ class Ride extends BaseEntity {
   @Column({ type: "double precision" })
   dropOffLat: number;
 
+  @Column({ nullable: true})
+  driverId: string;
+
+  @Column({ nullable: true})
+  passengerId: string;
+
   @Column({ type: "double precision" })
   price: number;
 
