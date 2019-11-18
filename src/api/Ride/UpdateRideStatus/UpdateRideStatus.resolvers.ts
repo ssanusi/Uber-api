@@ -11,7 +11,7 @@ const updateRideStatus = authResolver(
   async (
     _,
     args: UpdateRideStatusMutationArgs,
-    { req }
+    { req, pubSub }
   ): Promise<UpdateRideStatusResponse> => {
     const user: User = req.user;
     const {
@@ -32,6 +32,7 @@ const updateRideStatus = authResolver(
         if (ride) {
           ride.status = status;
           ride.save();
+           pubSub.publish("rideStatus",{ rideStatusSubscription: ride })
           return {
             status: "Success",
             error: null
