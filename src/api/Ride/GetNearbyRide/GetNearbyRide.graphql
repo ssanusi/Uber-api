@@ -1,0 +1,9 @@
+type GetNearbyRideResponse{
+    status: String!
+    error: String
+    ride: Ride
+}
+
+type Query {
+    getNearbyRide:GetNearbyRideResponse!
+}
