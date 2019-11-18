@@ -8,16 +8,18 @@ import { verifyToken } from "./utils/auth";
 
 class App {
   public app: GraphQLServer;
-  public pubSub: any
+  public pubSub: any;
   constructor() {
-    this.pubSub = new PubSub()
-    this.pubSub.ee.setMaxListeners(99)
+    this.pubSub = new PubSub();
+    this.pubSub.ee.setMaxListeners(99);
     this.app = new GraphQLServer({
       schema,
       context: req => {
+        const { connection: { context = null } = {} } = req;
         return {
           req: req.request,
-          pubSub: this.pubSub
+          pubSub: this.pubSub,
+          context
         };
       }
     });
