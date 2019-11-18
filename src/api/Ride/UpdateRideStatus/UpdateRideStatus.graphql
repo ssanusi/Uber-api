@@ -1,0 +1,15 @@
+type UpdateRideStatusResponse {
+    status: String!
+    error: String
+}
+
+input updateRideStatusInput {
+    status: statusType!
+    rideId: String!
+}
+
+type Mutation {
+    updateRideStatus(input:updateRideStatusInput!):UpdateRideStatusResponse!
+}
+
+

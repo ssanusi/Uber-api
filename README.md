@@ -69,10 +69,10 @@ Add run commands and examples you think users will find useful. Provide an optio
 - [x] Get My Places
 - [X] See Nearby Drivers
 - [X] Subscribe to Nearby Drivers
-- [ ] Request a Ride
-- [ ] Get Nearby Ride Requests
-- [ ] Subscribe to Nearby Ride Requests
-- [ ] Update Ride Status
+- [x] Request a Ride
+- [x] Get Nearby Ride Requests
+- [x] Subscribe to Nearby Ride Requests
+- [x] Update Ride Status
 - [ ] Get Ride
 - [ ] Subscribe to Ride Status
 - [ ] Create a Chat Room
