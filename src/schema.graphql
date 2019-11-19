@@ -14,6 +14,13 @@ type Query {
   user: User
 }
 
+type Subscription {
+  messageSubscription: Message
+  nearbyRideSubscription: Ride
+  rideStatusSubscription: Ride
+  driverSubscription: User
+}
+
 type SendChatMessageResponse {
   status: String!
   error: String
@@ -125,12 +132,6 @@ type GetRideResponse {
   status: String!
   error: String
   ride: Ride
-}
-
-type Subscription {
-  nearbyRideSubscription: Ride
-  rideStatusSubscription: Ride
-  driverSubscription: User
 }
 
 type RequestRideResponse {

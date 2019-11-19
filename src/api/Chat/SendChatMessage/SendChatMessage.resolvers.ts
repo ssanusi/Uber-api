@@ -12,7 +12,7 @@ const sendChatMessage = authResolver(
   async (
     _,
     args: SendChatMessageMutationArgs,
-    { req }
+    { req, pubSub }
   ): Promise<SendChatMessageResponse> => {
     const user: User = req.user;
     const {
@@ -27,11 +27,11 @@ const sendChatMessage = authResolver(
             chat,
             user
           }).save();
+          pubSub.publish("NewMessage", { messageSubscription: message });
           return {
-              status: "Success",
-              error: null,
-              message
-
+            status: "Success",
+            error: null,
+            message
           };
         } else {
           return {
