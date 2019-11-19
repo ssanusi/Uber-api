@@ -10,6 +10,7 @@ type Query {
   getMyRides: GetMyRidesHistoryResponse!
   getNearbyRide: GetNearbyRideResponse!
   getRide(rideId: String!): GetRideResponse!
+  getRideDetails(rideId: String!): GetRideDetailResponse!
   getMyProfile: GetMyProfileResponse!
   getNearbyDrivers: GetNearbyDriversResponse!
   user: User
@@ -136,6 +137,12 @@ type GetNearbyRideResponse {
 }
 
 type GetRideResponse {
+  status: String!
+  error: String
+  ride: Ride
+}
+
+type GetRideDetailResponse {
   status: String!
   error: String
   ride: Ride
