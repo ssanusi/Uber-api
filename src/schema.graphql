@@ -14,6 +14,36 @@ type Query {
   user: User
 }
 
+type SendChatMessageResponse {
+  status: String!
+  error: String
+  message: Message
+}
+
+input SendChatMessageInput {
+  text: String!
+  chatId: ID!
+}
+
+type Mutation {
+  sendChatMessage(input: SendChatMessageInput!): SendChatMessageResponse!
+  addPlace(input: AddPlacesInput): AddPlaceResponse!
+  deletePlace(placeId: String!): DeletePlaceResponse!
+  editPlace(input: EditPlaceInput!): EditPlaceResponse!
+  requestRide(input: RequestRideInput): RequestRideResponse!
+  updateRideStatus(input: updateRideStatusInput!): UpdateRideStatusResponse!
+  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
+  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
+  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
+  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
+  facebookConnect(input: FacebookUserInput!): FacebookResponse!
+  reportMovement(input: ReportMovementInput!): ReportMovementResponse!
+  requestEmailVerification: RequestEmailVerificationResponse!
+  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
+  toggleDrivingMode: ToggleDrivingModeResponse!
+  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
+}
+
 type Chat {
   id: ID!
   messages: [Message]!
@@ -30,6 +60,7 @@ type Chat {
 type Message {
   id: ID!
   text: String!
+  chatId: ID!
   user: User!
   chat: Chat!
   createdAt: String!
@@ -47,24 +78,6 @@ input AddPlacesInput {
   lat: Float!
   address: String!
   isFav: Boolean!
-}
-
-type Mutation {
-  addPlace(input: AddPlacesInput): AddPlaceResponse!
-  deletePlace(placeId: String!): DeletePlaceResponse!
-  editPlace(input: EditPlaceInput!): EditPlaceResponse!
-  requestRide(input: RequestRideInput): RequestRideResponse!
-  updateRideStatus(input: updateRideStatusInput!): UpdateRideStatusResponse!
-  completeEmailVerification(key: String!): CompleteEmailVerificationResponse!
-  completePhoneVerification(input: CompletePhoneVerificationInput!): CompletePhoneVerificationResponse!
-  emailSignIn(input: EmailSignInInput!): EmailSignInResponse!
-  emailSignUp(input: EmailSignUpInput!): EmailSignUpResponse!
-  facebookConnect(input: FacebookUserInput!): FacebookResponse!
-  reportMovement(input: ReportMovementInput!): ReportMovementResponse!
-  requestEmailVerification: RequestEmailVerificationResponse!
-  startPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse!
-  toggleDrivingMode: ToggleDrivingModeResponse!
-  updateMyProfile(input: UpdateMyProfileInput!): UpdateMyProfileResponse!
 }
 
 type DeletePlaceResponse {

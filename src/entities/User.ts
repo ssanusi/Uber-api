@@ -13,6 +13,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+
 import Chat from "./Chat";
 import Message from "./Message";
 import Place from "./Place";
