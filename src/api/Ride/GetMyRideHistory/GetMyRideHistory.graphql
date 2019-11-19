@@ -1,0 +1,9 @@
+type GetMyRidesHistoryResponse {
+    status: String!
+    error: String
+    rides: [Ride]
+}
+
+type Query {
+    getMyRides:GetMyRidesHistoryResponse!
+}
