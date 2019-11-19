@@ -8,7 +8,7 @@ const getRide = authResolver( async (_, args: GetRideQueryArgs, { req }): Promis
     const user: User = req.user;
     const { rideId } = args;
     try {
-      const ride = await Ride.findOne({ id: rideId }, { relations: [] });
+      const ride = await Ride.findOne({ id: rideId });
       if (ride) {
         if (ride.passengerId === user.id || ride.driverId === user.id) {
           return {
