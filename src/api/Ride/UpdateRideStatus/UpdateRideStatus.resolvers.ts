@@ -1,3 +1,4 @@
+import Chat from "../../../entities/Chat";
 import Ride from "../../../entities/Ride";
 import User from "../../../entities/User";
 import {
@@ -21,10 +22,18 @@ const updateRideStatus = authResolver(
       try {
         let ride: Ride | undefined;
         if (status === "ACCEPTED") {
-          ride = await Ride.findOne({ id: rideId, status: "REQUESTING" });
+          ride = await Ride.findOne(
+            { id: rideId, status: "REQUESTING" },
+            { relations: ["passenger"] }
+          );
           if (ride) {
             ride.driver = user;
             user.isTaken = true;
+            user.save();
+             await Chat.create({
+              driver: user,
+              passenger: ride.passenger
+            }).save();
           }
         } else {
           ride = await Ride.findOne({ id: rideId, driver: user });
@@ -32,7 +41,7 @@ const updateRideStatus = authResolver(
         if (ride) {
           ride.status = status;
           ride.save();
-           pubSub.publish("rideStatus",{ rideStatusSubscription: ride })
+          pubSub.publish("rideStatus", { rideStatusSubscription: ride });
           return {
             status: "Success",
             error: null

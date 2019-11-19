@@ -1,0 +1,9 @@
+type GetRideDetailResponse {
+    status: String!
+    error: String
+    ride: Ride
+}
+
+type Query {
+    getRideDetails(rideId:String!): GetRideDetailResponse!
+}
