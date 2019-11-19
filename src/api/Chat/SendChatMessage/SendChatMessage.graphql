@@ -1,0 +1,14 @@
+type SendChatMessageResponse {
+    status: String!
+    error: String
+    message: Message
+}
+
+input SendChatMessageInput {
+    text: String!
+    chatId: ID!
+}
+
+type Mutation {
+    sendChatMessage(input: SendChatMessageInput!): SendChatMessageResponse!
+}

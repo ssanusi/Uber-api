@@ -76,8 +76,8 @@ Add run commands and examples you think users will find useful. Provide an optio
 - [X] Get Ride
 - [x] Subscribe to Ride Status
 - [x] Create a Chat Room
-- [ ] Get Chat Room Messages
-- [ ] Send a Chat Message
+- [x] Get Chat Room Messages
+- [x] Send a Chat Message
 - [ ] Subscribe to Chat Room Messages
 - [ ] Get Ride History
 - [ ] See Ride Detail
