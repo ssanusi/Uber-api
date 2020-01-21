@@ -26,6 +26,21 @@ Windows:
 yarn install
 ```
 
+## Environmental Variable
+
+create `.env` file add the below.
+
+```
+DB_USERNAME=
+DB_PASSWORD=
+DB_HOST=
+SENDGRID_API_KEY=
+TWILIO_SID=
+TWILIO_TOKEN=
+TWILIO_PHONE=
+JWT_KEY=
+```
+
 ## Using <project_name>
 
 To use <project_name>, follow these steps:
