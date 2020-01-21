@@ -1,9 +1,13 @@
+import "./utils/envConfig"
+
 import { Options } from "graphql-yoga";
 import { createConnection } from "typeorm";
 import { log } from "util";
 import app from "./app";
 import connectionOptions from "./ormConfig";
 import { verifyToken } from "./utils/auth";
+
+
 
 const PORT: string | number = process.env.PORT || 4000;
 const PLAYGROUND_ENDPOINT: string = "/playground";
