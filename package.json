@@ -40,7 +40,7 @@
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "twilio": "^3.37.1",
-    "typeorm": "^0.2.22"
+    "typeorm": "^0.2.25"
   },
   "scripts": {
     "createdb": "createdb uber_db",
