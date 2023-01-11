@@ -28,7 +28,7 @@
     "@types/bcrypt": "^3.0.0",
     "@types/dotenv": "^8.2.0",
     "bcrypt": "^5.0.0",
-    "class-validator": "^0.11.0",
+    "class-validator": "^0.14.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "graphql-scalars": "^1.0.4",
